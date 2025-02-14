@@ -3,6 +3,12 @@ import sys
 import random
 import os
 from PIL import Image  # Requires Pillow
+import sys
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 # Constants
 SCREEN_WIDTH = 600
@@ -172,17 +178,17 @@ class FallingObject(pygame.sprite.Sprite):
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Catcher Game")
+    pygame.display.set_caption("BE MY VALENTINEEE :D")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 36)
     small_font = pygame.font.SysFont(None, 24)
 
     # Sprite paths
-    player_path = "./sprites/default.png" 
-    falling_path = "./sprites/heart.png" 
-    eating_path = "./sprites/noms.png"  # eating sprite
-    ending_image_path = "./sprites/dog.gif"  # ending screen image/gif
-    final_gif_path = "./sprites/yippee.gif"  # final screen animated gif
+    player_path = resource_path("sprites/default.png")
+    falling_path = resource_path("sprites/heart.png")
+    eating_path = resource_path("sprites/noms.png") # eating sprite
+    ending_image_path = resource_path("sprites/dog.gif")  # ending screen image/gif
+    final_gif_path = resource_path("sprites/yippee.gif")  # final screen animated gif
 
     # Load sprites
     player_sprite = load_sprite(player_path, (80, 80), GREEN)
